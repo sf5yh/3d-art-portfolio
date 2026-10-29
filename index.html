@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>谭雪晴 | 3D美术作品集</title>
+    <title>谭雪情 | 3D游戏模型师作品集</title>
     <style>
         * {
             margin: 0;
@@ -16,7 +16,7 @@
             color: #443322;
             overflow-x: hidden;
         }
-        /* 顶部橙色标题栏 */
+        /* 顶部橙色窗口标题栏 */
         .top-bar {
             background: linear-gradient(90deg, #ff9b33, #ffb259);
             height: 56px;
@@ -37,10 +37,11 @@
             font-weight:bold;
         }
         .top-space{flex-grow:1}
-        /* 整体布局容器：左 + 中 + 右 */
+
+        /* 整体三栏布局：左-中-右 */
         .wrap{
             display: grid;
-            grid-template-columns: 220px 1fr 320px;
+            grid-template-columns: 220px 1fr 340px;
             gap:16px;
             padding:16px;
             min-height: calc(100vh - 56px);
@@ -55,9 +56,9 @@
         }
         .sidebar-logo{
             width:72px;height:72px;margin:0 auto 16px;
-            background:#ffb259;border-radius:20px;
-            display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px;
+            background:#ffb259;
             border-radius: 999px;
+            display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px;
         }
         .side-item{
             padding:12px 14px;
@@ -74,13 +75,14 @@
         .side-item:hover:not(.active){
             background:#ffe9cc;
         }
-        /* 中间主窗口 */
+        /* 中间作品面板 */
         .main-panel{
             background:#fff;
             border-radius:20px;
             padding:20px;
             box-shadow: 0 4px 12px #ffc27066;
             border:3px solid #ffddaa;
+            overflow-y:auto;
         }
         .header-info{
             text-align:center;margin-bottom:20px;
@@ -90,6 +92,7 @@
         }
         .header-info h2{margin-top:8px;color:#553a20}
         .header-info p{font-size:13px;color:#886644;margin-top:4px}
+
         .grid{
             display:grid;
             grid-template-columns: repeat(auto-fill, minmax(140px,1fr));
@@ -115,7 +118,8 @@
             text-align:center;padding:6px 4px;font-size:12px;color:#664422;
             background:#ffddaa77;
         }
-        /* 右侧预览面板 */
+
+        /* 右侧：预览 + 简历个人资料 */
         .preview-panel{
             background:#fff;
             border-radius:20px;
@@ -124,22 +128,21 @@
             border:3px solid #ffddaa;
             display:flex;
             flex-direction:column;
+            gap:12px;
         }
         .preview-avatar{
-            text-align:center;margin-bottom:12px;
+            text-align:center;
         }
         .preview-avatar img{
             width:80px;height:80px;border-radius:50%;border:2px solid #ffb259;
         }
         .preview-img-box{
-            flex-grow:1;
             border-radius:14px;
             overflow:hidden;
             background:#fff9ee;
             border:2px solid #ffddaa;
-            margin:12px 0;
             display:flex;align-items:center;justify-content:center;
-            min-height:260px;
+            min-height:240px;
         }
         #previewImg{
             max-width:100%;max-height:100%;object-fit:contain;
@@ -148,26 +151,37 @@
             padding:10px;background:#ffe9cc;border-radius:12px;font-size:13px;
             color:#664422;
         }
-        /* 底部小装饰 */
-        .deco{
-            position:fixed;bottom:20px;left:24px;
+        .resume-block{
+            background:#fff9ee;
+            border-radius:12px;
+            padding:12px;
+            font-size:12.5px;
+            border:2px solid #ffddaa;
+            max-height:260px;
+            overflow-y:auto;
+        }
+        .resume-block h4{
+            color:#cc6600;
+            margin-bottom:6px;
+        }
+        .resume-block p{
+            line-height:1.6;
+            margin-bottom:4px;
         }
     </style>
 </head>
 <body>
-    <!-- 顶部橙条 -->
     <div class="top-bar">
         <div class="top-dot"></div>
         <div class="top-dot"></div>
         <div class="top-dot"></div>
-        <div class="top-title-box">谭雪晴</div>
-        <div class="top-title-box">作品集</div>
+        <div class="top-title-box">谭雪情</div>
+        <div class="top-title-box">3D作品集</div>
         <div class="top-space"></div>
-        <div class="top-title-box">+</div>
     </div>
 
     <div class="wrap">
-        <!-- 左侧侧边栏 -->
+        <!-- 左侧分类栏 -->
         <div class="sidebar">
             <div class="sidebar-logo">🐱</div>
             <div class="side-item active" data-type="all">🌟 全部作品</div>
@@ -176,57 +190,143 @@
             <div class="side-item" data-type="char">👧 角色模型</div>
         </div>
 
-        <!-- 中间主作品区 -->
+        <!-- 中间作品网格区 -->
         <div class="main-panel">
             <div class="header-info">
-                <img class="avatar" src="【这里替换你的头像链接】">
-                <h2>谭雪晴 | 3D美术作品集</h2>
-                <p>PBR次世代建模｜3ds Max / Blender / Substance Painter｜游戏道具、场景资产</p>
+                <img class="avatar" src="touxiang.png">
+                <h2>谭雪情 | 3D游戏模型师</h2>
+                <p>求职意向：次世代道具 / 场景模型制作</p>
             </div>
             <div class="grid" id="workGrid">
-                <!-- =========在这里填你的所有作品========= -->
-                <div class="work-card" data-type="scene" data-img="【作品图链接】" data-name="室内居家场景" data-info="3ds Max室内小场景，PBR材质渲染">
-                    <img src="【作品图链接】">
-                    <div class="name">室内居家场景</div>
+                <div class="work-card" data-type="scene" data-img="u.jpg" data-name="室内场景" data-info="3ds Max，室内场景搭建，PBR材质渲染">
+                    <img src="u.jpg">
+                    <div class="name">室内场景</div>
                 </div>
-                <div class="work-card" data-type="prop" data-img="【作品图链接】" data-name="木椅道具" data-info="卡通手绘家具道具">
-                    <img src="【作品图链接】">
+                <div class="work-card" data-type="prop" data-img="1v.jpg" data-name="木椅道具" data-info="游戏家具道具，低模拓扑，SP贴图绘制">
+                    <img src="1v.jpg">
                     <div class="name">木椅道具</div>
                 </div>
-                <div class="work-card" data-type="prop" data-img="【作品图链接】" data-name="长剑武器" data-info="次世代PBR武器">
-                    <img src="【作品图链接】">
+                <div class="work-card" data-type="char" data-img="1111.png" data-name="卡通角色" data-info="Q版卡通角色，手绘贴图">
+                    <img src="1111.png">
+                    <div class="name">卡通角色</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="yy.jpg" data-name="武器模型" data-info="次世代硬表面武器，高模雕刻烘焙">
+                    <img src="yy.jpg">
+                    <div class="name">武器模型</div>
+                </div>
+                <div class="work-card" data-type="scene" data-img="dwe.png" data-name="蓝图室内场景" data-info="室内场景布局，资产组合搭建">
+                    <img src="dwe.png">
+                    <div class="name">蓝图室内场景</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="er.png" data-name="长剑武器" data-info="PBR次世代长剑道具">
+                    <img src="er.png">
                     <div class="name">长剑武器</div>
                 </div>
-                <div class="work-card" data-type="prop" data-img="【作品图链接】" data-name="卡通小车" data-info="Q版载具资产">
-                    <img src="【作品图链接】">
+                <div class="work-card" data-type="scene" data-img="f.png" data-name="店铺建筑" data-info="卡通风格建筑场景">
+                    <img src="f.png">
+                    <div class="name">店铺建筑</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="fg.png" data-name="卡通小车" data-info="Q版载具资产">
+                    <img src="fg.png">
                     <div class="name">卡通小车</div>
                 </div>
-                <div class="work-card" data-type="prop" data-img="【作品图链接】" data-name="枪械道具" data-info="硬表面枪械拓扑烘焙">
-                    <img src="【作品图链接】">
+                <div class="work-card" data-type="prop" data-img="fre.png" data-name="收纳箱子" data-info="游戏交互箱子道具">
+                    <img src="fre.png">
+                    <div class="name">收纳箱子</div>
+                </div>
+                <div class="work-card" data-type="scene" data-img="g.png" data-name="木屋建筑" data-info="写实木屋场景资产">
+                    <img src="g.png">
+                    <div class="name">木屋建筑</div>
+                </div>
+                <div class="work-card" data-type="scene" data-img="hjy56e.png" data-name="甜品场景" data-info="卡通小型环境场景">
+                    <img src="hjy56e.png">
+                    <div class="name">甜品场景</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="hytgtfr.png" data-name="盾牌雕刻" data-info="硬表面盾牌高模雕刻">
+                    <img src="hytgtfr.png">
+                    <div class="name">盾牌雕刻</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="jg.png" data-name="机械载具" data-info="机械硬表面载具建模">
+                    <img src="jg.png">
+                    <div class="name">机械载具</div>
+                </div>
+                <div class="work-card" data-type="scene" data-img="k.png" data-name="野外场景" data-info="自然野外环境搭建">
+                    <img src="k.png">
+                    <div class="name">野外场景</div>
+                </div>
+                <div class="work-card" data-type="scene" data-img="qwrt.jpg" data-name="童话小屋" data-info="卡通童话风格小屋">
+                    <img src="qwrt.jpg">
+                    <div class="name">童话小屋</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="rf.png" data-name="吊坠饰品" data-info="首饰金属道具材质练习">
+                    <img src="rf.png">
+                    <div class="name">吊坠饰品</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="rfeee.png" data-name="枪械道具" data-info="硬表面枪械拓扑烘焙练习">
+                    <img src="rfeee.png">
                     <div class="name">枪械道具</div>
                 </div>
-                <div class="work-card" data-type="scene" data-img="【作品图链接】" data-name="欧式小屋" data-info="卡通风格建筑场景">
-                    <img src="【作品图链接】">
+                <div class="work-card" data-type="scene" data-img="rge.png" data-name="欧式小屋" data-info="欧式卡通建筑">
+                    <img src="rge.png">
                     <div class="name">欧式小屋</div>
                 </div>
-                <div class="work-card" data-type="char" data-img="【作品图链接】" data-name="卡通角色" data-info="Q版角色手绘贴图">
-                    <img src="【作品图链接】">
-                    <div class="name">卡通角色</div>
+                <div class="work-card" data-type="scene" data-img="s.png" data-name="室内房间" data-info="小型室内居住场景">
+                    <img src="s.png">
+                    <div class="name">室内房间</div>
+                </div>
+                <div class="work-card" data-type="scene" data-img="sg.jpg" data-name="临街小店" data-info="街景店铺场景资产">
+                    <img src="sg.jpg">
+                    <div class="name">临街小店</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="t.png" data-name="餐具静物" data-info="生活类道具资产">
+                    <img src="t.png">
+                    <div class="name">餐具静物</div>
+                </div>
+                <div class="work-card" data-type="scene" data-img="tgtfre.jpg" data-name="卡通房屋" data-info="Q版房屋场景">
+                    <img src="tgtfre.jpg">
+                    <div class="name">卡通房屋</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="tyhrte.png" data-name="武器徽章" data-info="装饰徽章硬表面道具">
+                    <img src="tyhrte.png">
+                    <div class="name">武器徽章</div>
+                </div>
+                <div class="work-card" data-type="scene" data-img="uk.jpg" data-name="城镇场景" data-info="组合城镇环境场景">
+                    <img src="uk.jpg">
+                    <div class="name">城镇场景</div>
+                </div>
+                <div class="work-card" data-type="scene" data-img="ygr.jpg" data-name="古风院落" data-info="古风小型院落场景">
+                    <img src="ygr.jpg">
+                    <div class="name">古风院落</div>
+                </div>
+                <div class="work-card" data-type="prop" data-img="yyt.png" data-name="黄金长剑" data-info="金属PBR武器练习">
+                    <img src="yyt.png">
+                    <div class="name">黄金长剑</div>
                 </div>
             </div>
         </div>
 
-        <!-- 右侧预览窗口 -->
+        <!-- 右侧：作品预览 + 简历信息 -->
         <div class="preview-panel">
             <div class="preview-avatar">
-                <img src="【这里替换你的头像链接】">
-                <p style="text-align:center;font-weight:bold;margin-top:4px">谭雪晴 | 3D美术</p>
+                <img src="touxiang.png">
+                <p style="text-align:center;font-weight:bold;margin-top:4px">谭雪情｜3D游戏模型师</p>
             </div>
             <div class="preview-img-box">
-                <img id="previewImg" src="" alt="预览图">
+                <img id="previewImg" src="" alt="作品预览">
             </div>
             <div class="preview-desc" id="previewText">
-                点击左侧网格里的作品卡片，在这里查看大图和介绍
+                点击中间网格卡片，查看作品大图与制作说明
+            </div>
+
+            <div class="resume-block">
+                <h4>📋 个人简历</h4>
+                <p><b>求职意向：</b>3D游戏模型师（次世代道具/场景）</p>
+                <p><b>教育：</b>成都职业技术学院｜虚拟现实技术应用</p>
+                <p><b>擅长：</b>PBR次世代全流程、高模雕刻、拓扑、UV、烘焙贴图；硬表面、场景、道具建模；具备外包商业交付经验</p>
+                <p><b>软件：</b>3ds Max、Blender、Maya、Substance Painter、Photoshop；了解UE、Unity基础操作</p>
+                <p><b>证书荣誉：</b>四川省大学生农业创意设计大赛</p>
+                <p><b>联系：</b>929488463@qq.com</p>
+                <p><b>现居：</b>四川成都</p>
             </div>
         </div>
     </div>
@@ -237,7 +337,7 @@
         const previewImg = document.getElementById('previewImg');
         const previewText = document.getElementById('previewText');
 
-        // 侧边筛选
+        // 侧边分类筛选
         sideItems.forEach(btn=>{
             btn.onclick = ()=>{
                 sideItems.forEach(b=>b.classList.remove('active'));
@@ -252,7 +352,7 @@
                 })
             }
         })
-        // 点击卡片，右侧预览更新
+        // 点击卡片，右侧更新预览
         cards.forEach(card=>{
             card.onclick = ()=>{
                 previewImg.src = card.dataset.img;
