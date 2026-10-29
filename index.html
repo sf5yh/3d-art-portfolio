@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>谭雪情 - 3D美术作品集</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft Yahei", sans-serif;
+        }
+        body {
+            background-color: #121214;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #42a5f5;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .desc {
+            color: #bbbbbb;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #1e1e24;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 25px #00000070;
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .card p {
+            padding: 12px;
+            font-size: 14px;
+            color: #ddd;
+        }
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #777;
+            font-size:13px;
+        }
+        /* 图片放大弹窗 */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            padding:20px;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        .lightbox.show {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="avatar" src="touxiang.png" alt="谭雪情头像">
+        <h1>谭雪情 | 3D美术作品集</h1>
+        <p class="desc">PBR次世代建模 / 3ds Max / Blender / Substance Painter，专注游戏道具、场景资产制作</p>
+    </div>
+
+    <div class="gallery">
+        <div class="card"><img src="u.jpg" alt="室内场景"><p>室内场景</p></div>
+        <div class="card"><img src="1v.jpg" alt="木椅道具"><p>木椅道具</p></div>
+        <div class="card"><img src="1111.png" alt="卡通角色"><p>卡通角色</p></div>
+        <div class="card"><img src="yy.jpg" alt="武器模型"><p>武器模型</p></div>
+        <div class="card"><img src="dwe.png" alt="室内蓝图场景"><p>室内蓝图场景</p></div>
+        <div class="card"><img src="er.png" alt="长剑武器"><p>长剑武器</p></div>
+        <div class="card"><img src="f.png" alt="店铺建筑"><p>店铺建筑</p></div>
+        <div class="card"><img src="fg.png" alt="卡通小车"><p>卡通小车</p></div>
+        <div class="card"><img src="fre.png" alt="收纳箱子"><p>收纳箱子</p></div>
+        <div class="card"><img src="g.png" alt="木屋建筑"><p>木屋建筑</p></div>
+        <div class="card"><img src="hjy56e.png" alt="甜品场景"><p>甜品场景</p></div>
+        <div class="card"><img src="hytgtfr.png" alt="盾牌雕刻"><p>盾牌雕刻</p></div>
+        <div class="card"><img src="jg.png" alt="机械载具"><p>机械载具</p></div>
+        <div class="card"><img src="k.png" alt="野外场景"><p>野外场景</p></div>
+        <div class="card"><img src="qwrt.jpg" alt="童话小屋"><p>童话小屋</p></div>
+        <div class="card"><img src="rf.png" alt="吊坠饰品"><p>吊坠饰品</p></div>
+        <div class="card"><img src="rfeee.png" alt="枪械道具"><p>枪械道具</p></div>
+        <div class="card"><img src="rge.png" alt="欧式小屋"><p>欧式小屋</p></div>
+        <div class="card"><img src="s.png" alt="室内房间"><p>室内房间</p></div>
+        <div class="card"><img src="sg.jpg" alt="临街小店"><p>临街小店</p></div>
+        <div class="card"><img src="t.png" alt="餐具静物"><p>餐具静物</p></div>
+        <div class="card"><img src="tgtfre.jpg" alt="卡通房屋"><p>卡通房屋</p></div>
+        <div class="card"><img src="tyhrte.png" alt="武器徽章"><p>武器徽章</p></div>
+        <div class="card"><img src="uk.jpg" alt="城镇场景"><p>城镇场景</p></div>
+        <div class="card"><img src="ygr.jpg" alt="古风院落"><p>古风院落</p></div>
+        <div class="card"><img src="yyt.png" alt="黄金长剑"><p>黄金长剑</p></div>
+        <div class="card"><img src="tt.jpg" alt="新增作品"><p>作品展示</p></div>
+    </div>
+
+    <footer>
+        © 2026 SF5YH 谭雪情 3D美术作品集
+    </footer>
+
+    <!-- 放大弹窗 -->
+    <div class="lightbox" id="lightbox">
+        <img id="lightImg" src="" alt="大图预览">
+    </div>
+
+    <script>
+        const cards = document.querySelectorAll('.card img');
+        const lightbox = document.getElementById('lightbox');
+        const lightImg = document.getElementById('lightImg');
+        cards.forEach(img=>{
+            img.onclick = ()=>{
+                lightImg.src = img.src;
+                lightbox.classList.add('show');
+            }
+        })
+        lightbox.onclick = ()=>{
+            lightbox.classList.remove('show');
+        }
+    </script>
+</body>
+</html>
