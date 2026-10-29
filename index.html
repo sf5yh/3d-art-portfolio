@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>谭雪情 | 3D游戏模型师作品集</title>
+    <title>谭雪情 | 3D次世代建模作品集</title>
     <style>
         * {
             margin: 0;
@@ -12,357 +12,397 @@
             font-family: "Microsoft YaHei", system-ui, sans-serif;
         }
         body {
-            background-color: #fff6e9;
-            color: #443322;
-            overflow-x: hidden;
+            background-color: #f8f3e9;
+            color: #333;
         }
-        /* 顶部橙色窗口标题栏 */
-        .top-bar {
-            background: linear-gradient(90deg, #ff9b33, #ffb259);
-            height: 56px;
-            display: flex;
-            align-items: center;
-            padding: 0 20px;
-            gap:12px;
-            border-radius: 0 0 16px 16px;
-            box-shadow: 0 3px 8px #ffb25977;
+        /* 顶部导航栏 */
+        nav {
+            background: #f8f3e9;
+            padding: 32px 0;
+            text-align: center;
         }
-        .top-dot{
-            width:12px;height:12px;border-radius:50%;background:#fff7;
+        .nav-item {
+            display: inline-block;
+            margin: 0 36px;
+            font-size: 42px;
+            color: #666;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.25s;
         }
-        .top-title-box{
-            background:#fff8;
-            padding:4px 16px;
-            border-radius:20px;
-            font-weight:bold;
+        .nav-item.active {
+            color: #222;
         }
-        .top-space{flex-grow:1}
-
-        /* 整体三栏布局：左-中-右 */
-        .wrap{
-            display: grid;
-            grid-template-columns: 220px 1fr 340px;
-            gap:16px;
-            padding:16px;
-            min-height: calc(100vh - 56px);
+        .nav-item.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 100%;
+            height: 4px;
+            background-color: #222;
         }
-        /* 左侧侧边栏 */
-        .sidebar{
-            background:#fff;
-            border-radius:20px;
-            padding:16px 12px;
-            box-shadow: 0 4px 12px #ffc27066;
-            border:3px solid #ffddaa;
+        /* 内容区块，默认隐藏 */
+        .section {
+            display: none;
+            padding: 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
-        .sidebar-logo{
-            width:72px;height:72px;margin:0 auto 16px;
-            background:#ffb259;
-            border-radius: 999px;
-            display:flex;align-items:center;justify-content:center;color:#fff;font-size:32px;
+        .section.show {
+            display: block;
         }
-        .side-item{
-            padding:12px 14px;
-            margin:8px 0;
-            border-radius:14px;
-            cursor:pointer;
-            transition:0.2s;
-            font-weight:500;
-            display:flex;align-items:center;gap:8px;
+        /* ====== 首页板块 ====== */
+        #home {
+            text-align: center;
+            padding-top:60px;
         }
-        .side-item.active{
-            background:#ff9b33;color:white;
+        #home h1 {
+            font-size:48px;
+            margin-bottom:16px;
         }
-        .side-item:hover:not(.active){
-            background:#ffe9cc;
+        #home p {
+            font-size:22px;
+            color:#555;
         }
-        /* 中间作品面板 */
-        .main-panel{
-            background:#fff;
-            border-radius:20px;
-            padding:20px;
-            box-shadow: 0 4px 12px #ffc27066;
-            border:3px solid #ffddaa;
-            overflow-y:auto;
+        /* ====== 关于我板块 ====== */
+        #about p{
+            font-size:20px;
+            line-height:2;
+            max-width:1000px;
+            margin:12px auto;
         }
-        .header-info{
-            text-align:center;margin-bottom:20px;
-        }
-        .header-info img.avatar{
-            width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid #ffb259;
-        }
-        .header-info h2{margin-top:8px;color:#553a20}
-        .header-info p{font-size:13px;color:#886644;margin-top:4px}
-
-        .grid{
+        /* ====== 作品集板块（带侧边筛选+作品网格） ====== */
+        .work-wrap{
             display:grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px,1fr));
-            gap:14px;
+            grid-template-columns:200px 1fr;
+            gap:24px;
+        }
+        .filter-side{
+            background:#fff;
+            border-radius:16px;
+            padding:20px;
+            border:2px solid #e9ddcc;
+        }
+        .filter-item{
+            padding:12px;
+            margin:8px 0;
+            border-radius:12px;
+            cursor:pointer;
+            font-size:18px;
+        }
+        .filter-item.active{
+            background:#ffb259;
+            color:#fff;
+        }
+        .work-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap:18px;
         }
         .work-card{
-            background:#fff9ee;
+            background:#fff;
             border-radius:14px;
             overflow:hidden;
-            border:2px solid #ffddaa;
+            border:2px solid #e9ddcc;
             cursor:pointer;
-            transition:0.25s;
-            box-shadow:0 2px 6px #ffd29955;
+            transition:0.2s;
         }
         .work-card:hover{
             transform: translateY(-4px);
-            border-color:#ff9b33;
+            border-color:#ffb259;
         }
         .work-card img{
-            width:100%;height:120px;object-fit:cover;
+            width:100%;
+            height:150px;
+            object-fit:cover;
         }
-        .work-card .name{
-            text-align:center;padding:6px 4px;font-size:12px;color:#664422;
-            background:#ffddaa77;
-        }
-
-        /* 右侧：预览 + 简历个人资料 */
-        .preview-panel{
-            background:#fff;
-            border-radius:20px;
-            padding:16px;
-            box-shadow: 0 4px 12px #ffc27066;
-            border:3px solid #ffddaa;
-            display:flex;
-            flex-direction:column;
-            gap:12px;
-        }
-        .preview-avatar{
+        .work-name{
             text-align:center;
+            padding:8px;
+            font-size:15px;
+            background:#f8f0e2;
         }
-        .preview-avatar img{
-            width:80px;height:80px;border-radius:50%;border:2px solid #ffb259;
+        /* 作品弹窗预览 */
+        .preview-modal{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            background:rgba(0,0,0,0.75);
+            display:none;
+            align-items:center;
+            justify-content:center;
+            z-index:999;
         }
-        .preview-img-box{
-            border-radius:14px;
-            overflow:hidden;
-            background:#fff9ee;
-            border:2px solid #ffddaa;
-            display:flex;align-items:center;justify-content:center;
-            min-height:240px;
+        .preview-modal.show{
+            display:flex;
         }
-        #previewImg{
-            max-width:100%;max-height:100%;object-fit:contain;
+        .modal-box{
+            background:#fff;
+            padding:24px;
+            border-radius:16px;
+            max-width:900px;
+            max-height:90vh;
         }
-        .preview-desc{
-            padding:10px;background:#ffe9cc;border-radius:12px;font-size:13px;
-            color:#664422;
+        .modal-box img{
+            max-width:100%;
+            max-height:70vh;
+            display:block;
+            margin:0 auto 16px;
         }
-        .resume-block{
-            background:#fff9ee;
-            border-radius:12px;
-            padding:12px;
-            font-size:12.5px;
-            border:2px solid #ffddaa;
-            max-height:260px;
-            overflow-y:auto;
+        .modal-desc{
+            font-size:18px;
+            line-height:1.8;
         }
-        .resume-block h4{
-            color:#cc6600;
-            margin-bottom:6px;
+        .close-btn{
+            text-align:right;
+            font-size:28px;
+            cursor:pointer;
+            margin-bottom:8px;
         }
-        .resume-block p{
-            line-height:1.6;
-            margin-bottom:4px;
+        /* ====== 简历板块 ====== */
+        #resume{
+            max-width:900px;
+            margin:0 auto;
+        }
+        #resume h2{
+            text-align:center;
+            margin-bottom:24px;
+            font-size:32px;
+        }
+        .resume-item{
+            margin:16px 0;
+            font-size:20px;
+            line-height:2;
+        }
+        /* ====== 联系我板块 ====== */
+        #contact{
+            text-align:center;
+            padding-top:40px;
+        }
+        #contact p{
+            font-size:24px;
+            line-height:2.2;
         }
     </style>
 </head>
 <body>
-    <div class="top-bar">
-        <div class="top-dot"></div>
-        <div class="top-dot"></div>
-        <div class="top-dot"></div>
-        <div class="top-title-box">谭雪情</div>
-        <div class="top-title-box">3D作品集</div>
-        <div class="top-space"></div>
-    </div>
+    <!-- 顶部导航 -->
+    <nav>
+        <div class="nav-item active" data-target="home">首页</div>
+        <div class="nav-item" data-target="about">关于我</div>
+        <div class="nav-item" data-target="works">作品集</div>
+        <div class="nav-item" data-target="resume">个人简历</div>
+        <div class="nav-item" data-target="contact">联系我</div>
+    </nav>
 
-    <div class="wrap">
-        <!-- 左侧分类栏 -->
-        <div class="sidebar">
-            <div class="sidebar-logo">🐱</div>
-            <div class="side-item active" data-type="all">🌟 全部作品</div>
-            <div class="side-item" data-type="prop">⚔️ 道具建模</div>
-            <div class="side-item" data-type="scene">🏠 场景资产</div>
-            <div class="side-item" data-type="char">👧 角色模型</div>
-        </div>
+    <!-- 首页 -->
+    <section id="home" class="section show">
+        <h1>谭雪情</h1>
+        <p>3D次世代道具/场景建模师 | PBR全流程</p>
+    </section>
 
-        <!-- 中间作品网格区 -->
-        <div class="main-panel">
-            <div class="header-info">
-                <img class="avatar" src="touxiang.png">
-                <h2>谭雪情 | 3D游戏模型师</h2>
-                <p>求职意向：次世代道具 / 场景模型制作</p>
+    <!-- 关于我 -->
+    <section id="about" class="section">
+        <p>你好，我是谭雪情，就读于成都职业技术学院虚拟现实技术应用专业。</p>
+        <p>主攻次世代PBR资产全流程建模，熟练使用3ds Max、Blender、Maya、Substance Painter，擅长硬表面道具、卡通场景、古风场景制作，有外包接单交付经验。</p>
+        <p>求职方向：成都次世代道具、场景建模岗位，偏好安静独立的工作环境。</p>
+    </section>
+
+    <!-- 作品集 -->
+    <section id="works" class="section">
+        <div class="work-wrap">
+            <div class="filter-side">
+                <div class="filter-item active" data-type="all">🌟 全部作品</div>
+                <div class="filter-item" data-type="prop">⚔️ 道具建模</div>
+                <div class="filter-item" data-type="scene">🏠 场景资产</div>
+                <div class="filter-item" data-type="char">👧 角色模型</div>
             </div>
-            <div class="grid" id="workGrid">
+            <div class="work-grid" id="workGrid">
                 <div class="work-card" data-type="prop" data-img="1v.jpg" data-name="木椅子" data-info="木质椅子道具，低模拓扑，SP绘制PBR贴图">
                     <img src="1v.jpg">
-                    <div class="name">木椅子</div>
+                    <div class="work-name">木椅子</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="dwe.png" data-name="室内布局草图" data-info="室内场景布局规划，基础场景搭建练习">
                     <img src="dwe.png">
-                    <div class="name">室内布局草图</div>
+                    <div class="work-name">室内布局草图</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="er.png" data-name="紫柄长剑" data-info="次世代长剑硬表面，高模烘焙法线贴图">
                     <img src="er.png">
-                    <div class="name">紫柄长剑</div>
+                    <div class="work-name">紫柄长剑</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="f.png" data-name="卡通小店建筑" data-info="Q版卡通临街小店，卡通风格场景资产">
                     <img src="f.png">
-                    <div class="name">卡通小店建筑</div>
+                    <div class="work-name">卡通小店建筑</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="fg.png" data-name="卡通小车" data-info="Q版黄色小汽车，低多边形载具道具">
                     <img src="fg.png">
-                    <div class="name">卡通小车</div>
+                    <div class="work-name">卡通小车</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="fre.png" data-name="绿色收纳箱" data-info="游戏交互箱子道具，硬表面建模">
                     <img src="fre.png">
-                    <div class="name">绿色收纳箱</div>
+                    <div class="work-name">绿色收纳箱</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="g.png" data-name="小木屋" data-info="写实木屋建筑，场景资产搭建">
                     <img src="g.png">
-                    <div class="name">小木屋</div>
+                    <div class="work-name">小木屋</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="hjy56e.png" data-name="甜品小场景" data-info="可爱卡通甜品桌面小场景，氛围渲染">
                     <img src="hjy56e.png">
-                    <div class="name">甜品小场景</div>
+                    <div class="work-name">甜品小场景</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="hytgtfr.png" data-name="花纹盾牌" data-info="雕花盾牌硬表面高模雕刻，金属材质练习">
                     <img src="hytgtfr.png">
-                    <div class="name">花纹盾牌</div>
+                    <div class="work-name">花纹盾牌</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="jg.png" data-name="工程机械车" data-info="工程机械载具，硬表面结构建模练习">
                     <img src="jg.png">
-                    <div class="name">工程机械车</div>
+                    <div class="work-name">工程机械车</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="k.png" data-name="野外草地场景" data-info="自然野外环境，植被+地面场景搭建">
                     <img src="k.png">
-                    <div class="name">野外草地场景</div>
+                    <div class="work-name">野外草地场景</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="qwrt.jpg" data-name="童话小屋" data-info="童话风彩色小屋，卡通风格建筑资产">
                     <img src="qwrt.jpg">
-                    <div class="name">童话小屋</div>
+                    <div class="work-name">童话小屋</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="rf.png" data-name="银质吊坠" data-info="首饰吊坠道具，金属雕花PBR材质">
                     <img src="rf.png">
-                    <div class="name">银质吊坠</div>
+                    <div class="work-name">银质吊坠</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="rfeee.png" data-name="手枪道具" data-info="写实枪械硬表面，拓扑、法线烘焙练习">
                     <img src="rfeee.png">
-                    <div class="name">手枪道具</div>
+                    <div class="work-name">手枪道具</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="rge.png" data-name="欧式城堡小屋" data-info="欧式卡通童话城堡建筑，场景资产">
                     <img src="rge.png">
-                    <div class="name">欧式城堡小屋</div>
+                    <div class="work-name">欧式城堡小屋</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="s.png" data-name="室内卧室场景" data-info="温馨卧室室内场景，家具组合搭建">
                     <img src="s.png">
-                    <div class="name">室内卧室场景</div>
+                    <div class="work-name">室内卧室场景</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="sg.jpg" data-name="绿色小店" data-info="卡通街边商铺，独立建筑场景资产">
                     <img src="sg.jpg">
-                    <div class="name">绿色小店</div>
+                    <div class="work-name">绿色小店</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="t.png" data-name="餐具静物" data-info="酒瓶餐盘静物道具，生活类资产练习">
                     <img src="t.png">
-                    <div class="name">餐具静物</div>
+                    <div class="work-name">餐具静物</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="tgtfre.jpg" data-name="红顶小屋" data-info="卡通风格民居小屋，建模+渲染出图">
                     <img src="tgtfre.jpg">
-                    <div class="name">红顶小屋</div>
+                    <div class="work-name">红顶小屋</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="tt.jpg" data-name="城镇建筑群" data-info="多建筑组合城镇街景，场景组装练习">
                     <img src="tt.jpg">
-                    <div class="name">城镇建筑群</div>
+                    <div class="work-name">城镇建筑群</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="tyhrte.png" data-name="环形武器徽章" data-info="环形装饰武器徽章，硬表面雕刻">
                     <img src="tyhrte.png">
-                    <div class="name">环形武器徽章</div>
+                    <div class="work-name">环形武器徽章</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="u.jpg" data-name="居家客厅场景" data-info="客厅室内小场景，全套家具资产搭配">
                     <img src="u.jpg">
-                    <div class="name">居家客厅场景</div>
+                    <div class="work-name">居家客厅场景</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="uk.jpg" data-name="风车小镇" data-info="风车+房屋卡通小镇，环境场景渲染">
                     <img src="uk.jpg">
-                    <div class="name">风车小镇</div>
+                    <div class="work-name">风车小镇</div>
                 </div>
                 <div class="work-card" data-type="scene" data-img="ygr.jpg" data-name="古风院落" data-info="古风小型院落场景，国风建筑资产">
                     <img src="ygr.jpg">
-                    <div class="name">古风院落</div>
+                    <div class="work-name">古风院落</div>
                 </div>
                 <div class="work-card" data-type="char" data-img="yhgtr.png" data-name="卡通Q版角色" data-info="Q版卡通人物，角色建模手绘贴图练习">
                     <img src="yhgtr.png">
-                    <div class="name">卡通Q版角色</div>
+                    <div class="work-name">卡通Q版角色</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="yy.jpg" data-name="弯刃长刀" data-info="异形长刀武器，次世代硬表面建模">
                     <img src="yy.jpg">
-                    <div class="name">弯刃长刀</div>
+                    <div class="work-name">弯刃长刀</div>
                 </div>
                 <div class="work-card" data-type="prop" data-img="yyt.png" data-name="黄金长剑" data-info="金色装饰长剑，金属PBR武器资产">
                     <img src="yyt.png">
-                    <div class="name">黄金长剑</div>
+                    <div class="work-name">黄金长剑</div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- 右侧：作品预览 + 简历信息 -->
-        <div class="preview-panel">
-            <div class="preview-avatar">
-                <img src="touxiang.png">
-                <p style="text-align:center;font-weight:bold;margin-top:4px">谭雪情｜3D游戏模型师</p>
-            </div>
-            <div class="preview-img-box">
-                <img id="previewImg" src="" alt="作品预览">
-            </div>
-            <div class="preview-desc" id="previewText">
-                点击中间网格卡片，查看作品大图与制作说明
-            </div>
+    <!-- 个人简历 -->
+    <section id="resume" class="section">
+        <h2>个人简历</h2>
+        <div class="resume-item"><b>姓名：</b>谭雪情</div>
+        <div class="resume-item"><b>求职意向：</b>3D次世代模型师（道具/场景）</div>
+        <div class="resume-item"><b>院校专业：</b>成都职业技术学院｜虚拟现实技术应用</div>
+        <div class="resume-item"><b>技能：</b>PBR全流程、高模雕刻、拓扑、UV拆分、烘焙、SP贴图绘制</div>
+        <div class="resume-item"><b>软件：</b>3ds Max、Blender、Maya、Substance Painter、Photoshop；了解UE5基础</div>
+        <div class="resume-item"><b>项目经历：</b>长期独立制作游戏道具、卡通场景、国风场景资产，有外包交付经验</div>
+    </section>
 
-            <div class="resume-block">
-                <h4>📋 个人简历</h4>
-                <p><b>求职意向：</b>3D游戏模型师（次世代道具/场景）</p>
-                <p><b>教育：</b>成都职业技术学院｜虚拟现实技术应用</p>
-                <p><b>擅长：</b>PBR次世代全流程、高模雕刻、拓扑、UV、烘焙贴图；硬表面、场景、道具建模；具备外包商业交付经验</p>
-                <p><b>软件：</b>3ds Max、Blender、Maya、Substance Painter、Photoshop；了解UE、Unity基础操作</p>
-                <p><b>证书荣誉：</b>四川省大学生农业创意设计大赛</p>
-                <p><b>联系：</b>929488463@qq.com</p>
-                <p><b>现居：</b>四川成都</p>
-            </div>
+    <!-- 联系我 -->
+    <section id="contact" class="section">
+        <p>📩 邮箱：929488463@qq.com</p>
+        <p>📍 所在地：四川成都</p>
+    </section>
+
+    <!-- 作品预览弹窗 -->
+    <div class="preview-modal" id="modal">
+        <div class="modal-box">
+            <div class="close-btn" onclick="closeModal()">×</div>
+            <img id="modalImg" src="">
+            <div class="modal-desc" id="modalText"></div>
         </div>
     </div>
 
     <script>
-        const sideItems = document.querySelectorAll('.side-item');
-        const cards = document.querySelectorAll('.work-card');
-        const previewImg = document.getElementById('previewImg');
-        const previewText = document.getElementById('previewText');
-
-        // 侧边分类筛选
-        sideItems.forEach(btn=>{
-            btn.onclick = ()=>{
-                sideItems.forEach(b=>b.classList.remove('active'));
-                btn.classList.add('active');
-                const t = btn.dataset.type;
-                cards.forEach(card=>{
-                    if(t==='all' || card.dataset.type === t){
-                        card.style.display="block";
-                    }else{
-                        card.style.display="none";
-                    }
+        // 导航切换
+        const navItems = document.querySelectorAll(".nav-item");
+        const sections = document.querySelectorAll(".section");
+        navItems.forEach(nav=>{
+            nav.onclick = ()=>{
+                navItems.forEach(n=>n.classList.remove("active"));
+                nav.classList.add("active");
+                const targetId = nav.dataset.target;
+                sections.forEach(s=>s.classList.remove("show"));
+                document.getElementById(targetId).classList.add("show");
+            }
+        })
+        // 作品筛选
+        const filterItems = document.querySelectorAll(".filter-item");
+        const workCards = document.querySelectorAll(".work-card");
+        filterItems.forEach(f=>{
+            f.onclick = ()=>{
+                filterItems.forEach(x=>x.classList.remove("active"));
+                f.classList.add("active");
+                const t = f.dataset.type;
+                workCards.forEach(card=>{
+                    if(t==="all" || card.dataset.type === t) card.style.display="block";
+                    else card.style.display="none";
                 })
             }
         })
-        // 点击卡片，右侧更新预览
-        cards.forEach(card=>{
+        // 弹窗预览
+        const modal = document.getElementById("modal");
+        const modalImg = document.getElementById("modalImg");
+        const modalText = document.getElementById("modalText");
+        workCards.forEach(card=>{
             card.onclick = ()=>{
-                previewImg.src = card.dataset.img;
-                previewText.innerText = card.dataset.info;
+                modalImg.src = card.dataset.img;
+                modalText.innerText = card.dataset.info;
+                modal.classList.add("show");
             }
         })
+        function closeModal(){
+            modal.classList.remove("show");
+        }
+        modal.onclick = (e)=>{
+            if(e.target === modal) closeModal();
+        }
     </script>
 </body>
 </html>
