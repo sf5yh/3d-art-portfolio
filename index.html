@@ -3,158 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>谭雪情 - 3D美术作品集</title>
+    <title>谭雪晴 | 3D美术作品集</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "Microsoft Yahei", sans-serif;
-        }
-        body {
-            background-color: #121214;
-            color: #fff;
-            padding: 40px 20px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .avatar {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #42a5f5;
-            margin-bottom: 16px;
-        }
-        h1 {
-            font-size: 28px;
-            margin-bottom: 8px;
-        }
-        .desc {
-            color: #bbbbbb;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 22px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .card {
-            background: #1e1e24;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: 0.3s ease;
-            cursor: pointer;
-        }
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px #00000070;
-        }
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-        .card p {
-            padding: 12px;
-            font-size: 14px;
-            color: #ddd;
-        }
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            color: #777;
-            font-size:13px;
-        }
-        /* 图片放大弹窗 */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-            padding:20px;
-        }
-        .lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-        }
-        .lightbox.show {
-            display: flex;
-        }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
+        body{background:#121214;color:#eee;line-height:1.6}
+        nav{position:sticky;top:0;background:#1a1a1d;z-index:99;border-bottom:1px solid #2c2c30}
+        .nav-wrap{max-width:1200px;margin:0 auto;display:flex;justify-content:center;gap:2rem;padding:1rem}
+        .nav-item{cursor:pointer;padding:0.5rem 0.8rem;border-radius:6px;transition:0.25s;color:#b8b8c2}
+        .nav-item.active,.nav-item:hover{background:#27272b;color:#fff}
+        .container{max-width:1200px;margin:0 auto;padding:2rem 1rem}
+        .hero{text-align:center;margin-bottom:3rem}
+        .avatar{width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:1rem;border:2px solid #444}
+        .hero h1{font-size:1.6rem;margin-bottom:0.4rem}
+        .hero p{color:#999;max-width:600px;margin:0 auto}
+        .section{display:none;margin-bottom:4rem}
+        .section.active{display:block}
+        .section-title{font-size:1.4rem;border-left:4px solid #4285f4;padding-left:0.8rem;margin-bottom:1.5rem;color:#ddd}
+        .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem}
+        .card{background:#1c1c20;border-radius:8px;overflow:hidden;border:1px solid #28282d;transition:0.3s;cursor:pointer}
+        .card:hover{transform:translateY(-6px);border-color:#4285f4}
+        .card img{width:100%;height:180px;object-fit:cover}
+        .card-text{padding:0.7rem;font-size:0.9rem;color:#ccc}
+        /* 弹窗 */
+        .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:200;display:none;align-items:center;justify-content:center;padding:2rem}
+        .overlay.show{display:flex}
+        .modal{max-width:900px;width:100%;background:#1a1a1d;border-radius:10px;overflow:hidden}
+        .modal-img{width:100%;max-height:70vh;object-fit:contain;background:#000}
+        .modal-info{padding:1.2rem}
+        .modal-info h3{margin-bottom:0.5rem}
+        .modal-info p{color:#aaa;font-size:0.95rem}
+        .close{text-align:right;padding:0.8rem 1rem 0 0;cursor:pointer;color:#aaa}
     </style>
 </head>
 <body>
-    <div class="header">
-        <img class="avatar" src="touxiang.png" alt="谭雪情头像">
-        <h1>谭雪情 | 3D美术作品集</h1>
-        <p class="desc">PBR次世代建模 / 3ds Max / Blender / Substance Painter，专注游戏道具、场景资产制作</p>
+    <nav>
+        <div class="nav-wrap">
+            <div class="nav-item active" data-target="home">首页</div>
+            <div class="nav-item" data-target="prop">道具建模</div>
+            <div class="nav-item" data-target="scene">场景资产</div>
+            <div class="nav-item" data-target="char">角色模型</div>
+            <div class="nav-item" data-target="about">关于我</div>
+        </div>
+    </nav>
+    <div class="container">
+        <!-- 首页板块 -->
+        <div class="section active" id="home">
+            <div class="hero">
+                <img class="avatar" src="你的头像图片地址" alt="头像">
+                <h1>谭雪晴 | 3D美术作品集</h1>
+                <p>PBR次世代3D建模、渲染作品 | 3ds Max / Blender / Substance Painter，专注游戏道具、场景资产制作</p>
+            </div>
+            <div class="section-title">全部作品</div>
+            <div class="grid">
+                <div class="card" data-img="图片链接" data-name="室内居家场景" data-desc="3ds Max建模，PBR贴图，室内写实小场景">
+                    <img src="图片链接">
+                    <div class="card-text">室内居家场景</div>
+                </div>
+                <div class="card" data-img="图片链接" data-name="木椅道具" data-desc="低模手绘风格家具道具">
+                    <img src="图片链接">
+                    <div class="card-text">木椅道具</div>
+                </div>
+                <div class="card" data-img="图片链接" data-name="长剑武器" data-desc="游戏武器PBR次世代道具">
+                    <img src="图片链接">
+                    <div class="card-text">长剑武器</div>
+                </div>
+                <div class="card" data-img="图片链接" data-name="卡通小车" data-desc="Q版载具资产，卡通风格">
+                    <img src="图片链接">
+                    <div class="card-text">卡通小车</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 道具板块 -->
+        <div class="section" id="prop">
+            <div class="section-title">道具建模 / 武器 / 饰品</div>
+            <div class="grid">
+                <div class="card" data-img="图片链接" data-name="枪械道具" data-desc="硬表面枪械建模，拓扑+烘焙">
+                    <img src="图片链接">
+                    <div class="card-text">枪械道具</div>
+                </div>
+                <div class="card" data-img="图片链接" data-name="吊坠饰品" data-desc="首饰道具，金属材质表现">
+                    <img src="图片链接">
+                    <div class="card-text">吊坠饰品</div>
+                </div>
+                <div class="card" data-img="图片链接" data-name="绿色箱子" data-desc="科幻风格收纳箱道具">
+                    <img src="图片链接">
+                    <div class="card-text">收纳箱道具</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 场景板块 -->
+        <div class="section" id="scene">
+            <div class="section-title">场景资产 / 室内 / 野外 / 建筑</div>
+            <div class="grid">
+                <div class="card" data-img="图片链接" data-name="野外场景" data-desc="自然野外小场景搭建，植被资产">
+                    <img src="图片链接">
+                    <div class="card-text">野外场景</div>
+                </div>
+                <div class="card" data-img="图片链接" data-name="欧式小屋" data-desc="卡通欧式建筑场景">
+                    <img src="图片链接">
+                    <div class="card-text">欧式小屋</div>
+                </div>
+                <div class="card" data-img="图片链接" data-name="店铺场景" data-desc="卡通小店室内外一体化场景">
+                    <img src="图片链接">
+                    <div class="card-text">卡通小店</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 角色板块 -->
+        <div class="section" id="char">
+            <div class="section-title">角色模型</div>
+            <div class="grid">
+                <div class="card" data-img="图片链接" data-name="卡通角色" data-desc="Q版卡通角色，手绘贴图">
+                    <img src="图片链接">
+                    <div class="card-text">卡通角色</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 关于我板块 -->
+        <div class="section" id="about">
+            <div class="section-title">关于我</div>
+            <div style="max-width:700px;color:#ccc">
+                <p style="margin-bottom:1rem;">我是谭雪晴，一名3D美术从业者，主攻PBR次世代资产制作。</p>
+                <p style="margin-bottom:1rem;">✅ 技能栈：3ds Max、Blender、Substance Painter，熟悉拓扑、UV拆分、烘焙、材质贴图、渲染全流程</p>
+                <p style="margin-bottom:1rem;">✅ 擅长：游戏道具、场景、载具、硬表面建模</p>
+                <p style="margin-bottom:1rem;">📩 联系邮箱：填写你的邮箱</p>
+            </div>
+        </div>
     </div>
 
-    <div class="gallery">
-        <div class="card"><img src="u.jpg" alt="室内场景"><p>室内场景</p></div>
-        <div class="card"><img src="1v.jpg" alt="木椅道具"><p>木椅道具</p></div>
-        <div class="card"><img src="1111.png" alt="卡通角色"><p>卡通角色</p></div>
-        <div class="card"><img src="yy.jpg" alt="武器模型"><p>武器模型</p></div>
-        <div class="card"><img src="dwe.png" alt="室内蓝图场景"><p>室内蓝图场景</p></div>
-        <div class="card"><img src="er.png" alt="长剑武器"><p>长剑武器</p></div>
-        <div class="card"><img src="f.png" alt="店铺建筑"><p>店铺建筑</p></div>
-        <div class="card"><img src="fg.png" alt="卡通小车"><p>卡通小车</p></div>
-        <div class="card"><img src="fre.png" alt="收纳箱子"><p>收纳箱子</p></div>
-        <div class="card"><img src="g.png" alt="木屋建筑"><p>木屋建筑</p></div>
-        <div class="card"><img src="hjy56e.png" alt="甜品场景"><p>甜品场景</p></div>
-        <div class="card"><img src="hytgtfr.png" alt="盾牌雕刻"><p>盾牌雕刻</p></div>
-        <div class="card"><img src="jg.png" alt="机械载具"><p>机械载具</p></div>
-        <div class="card"><img src="k.png" alt="野外场景"><p>野外场景</p></div>
-        <div class="card"><img src="qwrt.jpg" alt="童话小屋"><p>童话小屋</p></div>
-        <div class="card"><img src="rf.png" alt="吊坠饰品"><p>吊坠饰品</p></div>
-        <div class="card"><img src="rfeee.png" alt="枪械道具"><p>枪械道具</p></div>
-        <div class="card"><img src="rge.png" alt="欧式小屋"><p>欧式小屋</p></div>
-        <div class="card"><img src="s.png" alt="室内房间"><p>室内房间</p></div>
-        <div class="card"><img src="sg.jpg" alt="临街小店"><p>临街小店</p></div>
-        <div class="card"><img src="t.png" alt="餐具静物"><p>餐具静物</p></div>
-        <div class="card"><img src="tgtfre.jpg" alt="卡通房屋"><p>卡通房屋</p></div>
-        <div class="card"><img src="tyhrte.png" alt="武器徽章"><p>武器徽章</p></div>
-        <div class="card"><img src="uk.jpg" alt="城镇场景"><p>城镇场景</p></div>
-        <div class="card"><img src="ygr.jpg" alt="古风院落"><p>古风院落</p></div>
-        <div class="card"><img src="yyt.png" alt="黄金长剑"><p>黄金长剑</p></div>
-        <div class="card"><img src="tt.jpg" alt="新增作品"><p>作品展示</p></div>
-    </div>
-
-    <footer>
-        © 2026 SF5YH 谭雪情 3D美术作品集
-    </footer>
-
-    <!-- 放大弹窗 -->
-    <div class="lightbox" id="lightbox">
-        <img id="lightImg" src="" alt="大图预览">
+    <!-- 图片弹窗 -->
+    <div class="overlay" id="modal">
+        <div class="modal">
+            <div class="close" onclick="closeModal()">✕ 关闭</div>
+            <img class="modal-img" id="modalImg">
+            <div class="modal-info">
+                <h3 id="modalName"></h3>
+                <p id="modalDesc"></p>
+            </div>
+        </div>
     </div>
 
     <script>
-        const cards = document.querySelectorAll('.card img');
-        const lightbox = document.getElementById('lightbox');
-        const lightImg = document.getElementById('lightImg');
-        cards.forEach(img=>{
-            img.onclick = ()=>{
-                lightImg.src = img.src;
-                lightbox.classList.add('show');
+        // 导航切换分区
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('.section');
+        navItems.forEach(item=>{
+            item.onclick = ()=>{
+                const target = item.dataset.target;
+                navItems.forEach(i=>i.classList.remove('active'));
+                item.classList.add('active');
+                sections.forEach(s=>{
+                    s.classList.remove('active');
+                    if(s.id === target)s.classList.add('active');
+                })
             }
         })
-        lightbox.onclick = ()=>{
-            lightbox.classList.remove('show');
-        }
+        // 卡片弹窗
+        const overlay = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        const modalName = document.getElementById('modalName');
+        const modalDesc = document.getElementById('modalDesc');
+        document.querySelectorAll('.card').forEach(card=>{
+            card.onclick = ()=>{
+                modalImg.src = card.dataset.img;
+                modalName.innerText = card.dataset.name;
+                modalDesc.innerText = card.dataset.desc;
+                overlay.classList.add('show');
+            }
+        })
+        function closeModal(){overlay.classList.remove('show')}
+        overlay.onclick = e=>{if(e.target===overlay) closeModal()}
     </script>
 </body>
 </html>
